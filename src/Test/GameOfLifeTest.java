@@ -12,6 +12,8 @@ public class GameOfLifeTest{
 	GameOfLife testSystem;
 	boolean[][] testPopulation1;
 	boolean[][] testPopulation2;
+	
+	
 	@Before
 	public void setUp() {
 	testSystem = new GameOfLife();
@@ -117,13 +119,19 @@ public class GameOfLifeTest{
 	}
 	
 	@Test(expected = IllegalArgumentException.class)
-	public void TestNoPopulation(){
+	public void testNoPopulation(){
 		testSystem.gameOfLife(null, 1);
 	}
 	
 	@Test(expected = IllegalArgumentException.class)
-	public void TestNegativeGeneration(){
+	public void testNegativeGeneration(){
 		testSystem.gameOfLife(testPopulation1, -3);
+	}
+	
+	@Test(expected = IllegalArgumentException.class)
+	public void testIncompatiblePopulationSize(){
+		boolean[][] testPopulation3 = {{true,true,true},{false,true,false},{false,false,false,false,false}};
+		testSystem.gameOfLife(testPopulation3, 1);
 	}
 }
 
