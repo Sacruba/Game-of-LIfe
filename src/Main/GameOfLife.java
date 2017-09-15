@@ -17,15 +17,15 @@ public class GameOfLife implements IGameOfLife{
 				
 			}
 		}
-		
 		return newPopulation;
 	}
 	
 	private boolean suriveOrDie(boolean[][] population, int row, int column){
 		int livingNeighbours = countLivingNeighbours(population, row, column);
 	
-
-		if(livingNeighbours == 2 && population[row][column] == true){
+		if(!population[row][column])
+			return false;
+		else if(livingNeighbours == 2 && population[row][column]){
 			return true;
 		}
 		else{

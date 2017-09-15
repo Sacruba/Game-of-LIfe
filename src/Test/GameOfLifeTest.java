@@ -59,6 +59,7 @@ public class GameOfLifeTest{
 		assertArrayEquals(testSystem.gameOfLife(testPopulation1, 3),testPopulation2);
 	}
 	
+
 	
 	//@Test
 	//public void testDeadThroughHighPopulation(){}
