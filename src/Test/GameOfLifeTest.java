@@ -115,5 +115,15 @@ public class GameOfLifeTest{
 		assertArrayEquals(testSystem.gameOfLife(testPopulation1, 2),testPopulation2);
 		
 	}
+	
+	@Test(expected = IllegalArgumentException.class)
+	public void TestNoPopulation(){
+		testSystem.gameOfLife(null, 1);
+	}
+	
+	@Test(expected = IllegalArgumentException.class)
+	public void TestNegativeGeneration(){
+		testSystem.gameOfLife(testPopulation1, -3);
+	}
 }
 

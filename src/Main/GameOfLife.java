@@ -8,6 +8,13 @@ public class GameOfLife implements IGameOfLife{
 	public boolean[][] gameOfLife(boolean[][] pPopulation, int generations) {
 		// TODO Auto-generated method stub
 		
+		if (pPopulation == null){
+			throw new IllegalArgumentException("There was no Population");
+		}
+		else if (generations < 0){
+			throw new IllegalArgumentException("Generations can't be Negative");
+		}
+		
 		boolean[][] population = pPopulation;
 		
 			for (int k=0 ;k < generations;k++){
@@ -15,8 +22,7 @@ public class GameOfLife implements IGameOfLife{
 				for (int i = 0; i < population.length; i++) {
 					for (int j = 0; j < population[i].length; j++){
 						
-						newPopulation[i][j] = suriveOrDie(population ,i ,j);
-						
+						newPopulation[i][j] = suriveOrDie(population ,i ,j);	
 					}
 				}
 				population = newPopulation;
