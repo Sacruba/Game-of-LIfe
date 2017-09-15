@@ -41,5 +41,26 @@ public class GameOfLifeTest{
 		
 	}
 	
+	@Test
+	public void testSurvivalofLiving(){
+		testPopulation1[0][0] = true;
+		testPopulation1[1][1] = true;
+		testPopulation1[2][2] = true;
+		testPopulation1[3][3] = true;
+		testPopulation1[4][4] = true;
+		
+		testPopulation2[0][0] = true;
+		testPopulation2[1][1] = true;
+		testPopulation2[2][2] = true;
+		testPopulation2[3][3] = true;
+		testPopulation2[4][4] = true;
+		
+		assertArrayEquals(testSystem.gameOfLife(testPopulation1, 1),testPopulation2);
+		assertArrayEquals(testSystem.gameOfLife(testPopulation1, 3),testPopulation2);
+	}
+	
+	
+	//@Test
+	//public void testDeadThroughHighPopulation(){}
 }
 
