@@ -5,21 +5,23 @@ public class GameOfLife implements IGameOfLife{
 		
 	
 	@Override
-	public boolean[][] gameOfLife(boolean[][] population, int generations) {
+	public boolean[][] gameOfLife(boolean[][] pPopulation, int generations) {
 		// TODO Auto-generated method stub
 		
-		if(generations > 0){
-		boolean[][] newPopulation = new boolean[population.length][population[1].length];
+		boolean[][] population = pPopulation;
 		
-			for (int i = 0; i < population.length; i++) {
-				for (int j = 0; j < population[i].length; j++){
-					
-					newPopulation[i][j] = suriveOrDie(population ,i ,j);
-					
+			for (int k=0 ;k < generations;k++){
+				boolean[][] newPopulation = new boolean[population.length][population[1].length];	
+				for (int i = 0; i < population.length; i++) {
+					for (int j = 0; j < population[i].length; j++){
+						
+						newPopulation[i][j] = suriveOrDie(population ,i ,j);
+						
+					}
 				}
+				population = newPopulation;
 			}
-			return newPopulation;
-		}
+			
 		return population;
 	}
 	

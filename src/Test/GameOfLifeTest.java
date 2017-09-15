@@ -96,5 +96,24 @@ public class GameOfLifeTest{
 		
 		assertArrayEquals(testSystem.gameOfLife(testPopulation1, 0),testPopulation2);
 	}
+	
+	@Test
+	public void testMultipleGenerations(){
+		
+		testPopulation1[1][2] = true;
+		testPopulation1[3][2] = true;
+		testPopulation1[2][1] = true;
+		testPopulation1[3][3] = true;
+		testPopulation1[4][4] = true;
+		
+		testPopulation2[4][2] = true;
+		testPopulation2[2][3] = true;
+		testPopulation2[3][3] = true;
+		testPopulation2[4][3] = true;
+		testPopulation2[3][4] = true;
+		
+		assertArrayEquals(testSystem.gameOfLife(testPopulation1, 2),testPopulation2);
+		
+	}
 }
 
