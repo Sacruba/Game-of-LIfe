@@ -8,7 +8,7 @@ public class GameOfLife implements IGameOfLife{
 	public boolean[][] gameOfLife(boolean[][] population, int genarations) {
 		// TODO Auto-generated method stub
 		
-		boolean[][] newPopulation = population;
+		boolean[][] newPopulation = new boolean[population.length][population[1].length];
 		
 		for (int i = 0; i < population.length; i++) {
 			for (int j = 0; j < population[i].length; j++){
@@ -23,8 +23,9 @@ public class GameOfLife implements IGameOfLife{
 	private boolean suriveOrDie(boolean[][] population, int row, int column){
 		int livingNeighbours = countLivingNeighbours(population, row, column);
 	
-		if(!population[row][column])
-			return false;
+		if(livingNeighbours == 3){
+			return true;
+		}
 		else if(livingNeighbours == 2 && population[row][column]){
 			return true;
 		}
