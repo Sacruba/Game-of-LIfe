@@ -10,27 +10,36 @@ import Main.GameOfLife;
 public class GameOfLifeTest{
 	
 	GameOfLife testSystem;
-	boolean[][] testPopulation;
-	
+	boolean[][] testPopulation1;
+	boolean[][] testPopulation2;
 	@Before
 	public void setUp() {
 	testSystem = new GameOfLife();
-	testPopulation = new boolean[5][5];
-	for (int i = 0; i < testPopulation.length; i++) {
-		for (int j = 0; j < testPopulation[i].length; j++){
-			testPopulation[i][j] = false;
+	testPopulation1 = new boolean[5][5];
+	testPopulation2 = new boolean[5][5];
+	for (int i = 0; i < testPopulation1.length; i++) {
+		for (int j = 0; j < testPopulation1[i].length; j++){
+			testPopulation1[i][j] = false;
+			testPopulation2[i][j] = false;
 			}
 		}
+	
 	}
 	
 	@Test
 	public void testDeadPopulation(){
-	assertArrayEquals(testSystem.gameOfLife(testPopulation, 1),testPopulation);
-	assertArrayEquals(testSystem.gameOfLife(testPopulation, 3),testPopulation);
+	assertArrayEquals(testSystem.gameOfLife(testPopulation1, 1),testPopulation2);
+	assertArrayEquals(testSystem.gameOfLife(testPopulation1, 3),testPopulation2);
 	}
 	
+	@Test
+	public void testDeadThroughLowPopulation(){
+		testPopulation1[0][0] = true;
+		testPopulation1[0][1] = true;
+		testPopulation1[1][3] = true;
+		assertArrayEquals(testSystem.gameOfLife(testPopulation1, 1),testPopulation2);
+		
+	}
 	
-
-
 }
 
