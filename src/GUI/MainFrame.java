@@ -1,24 +1,19 @@
 package GUI;
 
 import javax.swing.*;
-
-import javafx.scene.Scene;
-import javafx.stage.Stage;
-
 import java.awt.*;
 import java.awt.event.*;
-import java.awt.Color.*;
 
-
-
+import Main.GameOfLife;
 
 
 public class MainFrame extends JFrame{
-    private static final int WIDTH = 400;
+	
+	private GameOfLife game;
+
+	private static final long serialVersionUID = 1L;
+	private static final int WIDTH = 400;
     private static final int HEIGHT = 300;
-    
-    private Stage stage;
-    private Scene scene;
     
     private JLabel generations;
     private JTextField generationsTF;
@@ -32,8 +27,10 @@ public class MainFrame extends JFrame{
 
 
     
-    public MainFrame()
+    public MainFrame(GameOfLife theGame)
     {
+    	
+    	game = theGame;
 
         generations = new JLabel("Generations: ", SwingConstants.RIGHT);
         generationsTF = new JTextField(10);
@@ -70,9 +67,25 @@ public class MainFrame extends JFrame{
     			table[i][j] = new JTextField(5);
     			pane.add(table[i][j]);
     			table[i][j].setText("Dead");
-    			//table[i][j].setBackground(new Color(255, 0, 0) );
+    			table[i][j].setBackground(new Color(255, 100, 100));
+    			table[i][j].setHorizontalAlignment(JTextField.CENTER);
+    			table[i][j].setEnabled(false);
+    			table[i][j].setDisabledTextColor(new Color(0, 0, 0));
     			}
-    		}      
+    		}
+        
+        table[1][2].setText("Alive");
+        table[3][2].setText("Alive");
+        table[2][1].setText("Alive");
+        table[3][3].setText("Alive");
+        table[4][4].setText("Alive");
+        
+        table[1][2].setBackground(new Color(100, 255, 100));
+        table[3][2].setBackground(new Color(100, 255, 100));
+        table[2][1].setBackground(new Color(100, 255, 100));
+        table[3][3].setBackground(new Color(100, 255, 100));
+        table[4][4].setBackground(new Color(100, 255, 100));
+        
          
          
         setSize(WIDTH, HEIGHT);
@@ -84,7 +97,36 @@ public class MainFrame extends JFrame{
     {
         public void actionPerformed(ActionEvent e)
         {
+           boolean[][] currentPopulation = new boolean[table.length][table[1].length];
+           boolean[][] newPopulation;
            
+           for (int i = 0; i < table.length; i++) {
+       			for (int j = 0; j < table[i].length; j++){
+       				if (table[i][j].getText().equals("Alive")){
+       					currentPopulation[i][j] = true;
+       				}
+       				else
+       				{
+       					currentPopulation[i][j] = false;
+       				}
+       			}
+           }
+           
+           newPopulation = game.gameOfLife(currentPopulation, Integer.parseInt(generationsTF.getText()));
+            	
+           for (int i = 0; i < newPopulation.length; i++) {
+       			for (int j = 0; j < newPopulation[i].length; j++){
+       				if (newPopulation[i][j]){
+       					table[i][j].setText("Alive");
+       			        table[i][j].setBackground(new Color(100, 255, 100));
+       				}
+       				else
+       				{
+       					table[i][j].setText("Dead");
+       	    			table[i][j].setBackground(new Color(255, 100, 100));
+       				}
+       			}
+           }
         }
     }
      

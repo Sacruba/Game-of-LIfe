@@ -5,10 +5,12 @@ import GUI.MainFrame;
 public class Main {
 	
 	static MainFrame mainFrame;
+	static GameOfLife game;
 	
 	public static void main(String[] args)
 	{		
-		mainFrame = new MainFrame();
+		game = new GameOfLife();
+		mainFrame = new MainFrame(game);
 	}
 	
 }
