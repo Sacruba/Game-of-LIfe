@@ -1,16 +1,18 @@
 package Main;
 
+import Controller.GameFieldChangeController;
 import GUI.MainFrame;
 
 public class Main {
-	
+
 	static MainFrame mainFrame;
 	static GameOfLife game;
-	
-	public static void main(String[] args)
-	{		
+	static GameFieldChangeController gameFieldController;
+
+	public static void main(String[] args) {
 		game = new GameOfLife();
-		mainFrame = new MainFrame(game);
+		gameFieldController = new GameFieldChangeController();
+		mainFrame = new MainFrame(game, gameFieldController);
 	}
-	
+
 }

@@ -3,6 +3,8 @@ package GUI;
 import java.awt.Color;
 import java.awt.Container;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -11,6 +13,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
+import Controller.GameFieldChangeController;
 import Main.GameOfLife;
 import javafx.fxml.FXML;
 import javafx.scene.layout.AnchorPane;
@@ -18,6 +21,7 @@ import javafx.scene.layout.AnchorPane;
 public class MainFrame extends JFrame {
 
 	private GameOfLife game;
+	private GameFieldChangeController gameFieldController;
 
 	private static final long serialVersionUID = 1L;
 	private static final int WIDTH = 1400;
@@ -36,9 +40,10 @@ public class MainFrame extends JFrame {
 	@FXML
 	private AnchorPane ap;
 
-	public MainFrame(GameOfLife theGame) {
+	public MainFrame(GameOfLife theGame, GameFieldChangeController pGameFieldController) {
 
 		game = theGame;
+		gameFieldController = pGameFieldController;
 
 		generations = new JLabel("Generations: ", SwingConstants.RIGHT);
 		generationsTF = new JTextField(10);
@@ -55,7 +60,7 @@ public class MainFrame extends JFrame {
 		// SPecify handlers for each button and add (register) ActionListeners
 		// to each button.
 		calculateB = new JButton("Calculate");
-		cbHandler = new CalculateButtonHandler(game, table, generationsTF);
+		cbHandler = new CalculateButtonHandler();
 		calculateB.addActionListener(cbHandler);
 
 		exitB = new JButton("Exit");
@@ -100,5 +105,20 @@ public class MainFrame extends JFrame {
 		setSize(WIDTH, HEIGHT);
 		setVisible(true);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
+	}
+
+	private class CalculateButtonHandler implements ActionListener {
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			gameFieldController.updateGameField(game, table, generationsTF);
+		}
+	}
+
+	private class ExitButtonHandler implements ActionListener {
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			System.exit(0);
+		}
 	}
 }
