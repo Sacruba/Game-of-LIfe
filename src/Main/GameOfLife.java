@@ -2,11 +2,11 @@ package Main;
 
 public class GameOfLife implements IGameOfLife {
 
-	private int minLivingNeighboursforDead = 3;
-	private int minLivingNeighboursforAlive = 2;
+	private int minLivingNeighboursForDead = 3;
+	private int minLivingNeighboursForAlive = 2;
 
-	private int maxLivingNeighboursforDead = 3;
-	private int maxLivingNeighboursforAlive = 3;
+	private int maxLivingNeighboursForDead = 3;
+	private int maxLivingNeighboursForAlive = 3;
 
 	@Override
 	public boolean[][] gameOfLife(boolean[][] pPopulation, int generations) {
@@ -40,20 +40,36 @@ public class GameOfLife implements IGameOfLife {
 		return population;
 	}
 
-	public void setMinLivingNeighboursforDead(int newValue) {
-		minLivingNeighboursforDead = newValue;
+	public void setMinLivingNeighboursForDead(int newValue) {
+		minLivingNeighboursForDead = newValue;
 	}
 
-	public void setminLivingNeighboursforAlive(int newValue) {
-		minLivingNeighboursforAlive = newValue;
+	public void setMinLivingNeighboursForAlive(int newValue) {
+		minLivingNeighboursForAlive = newValue;
 	}
 
-	public void setmaxLivingNeighboursforDead(int newValue) {
-		maxLivingNeighboursforDead = newValue;
+	public void setMaxLivingNeighboursForDead(int newValue) {
+		maxLivingNeighboursForDead = newValue;
 	}
 
-	public void setmaxLivingNeighboursforAlive(int newValue) {
-		maxLivingNeighboursforAlive = newValue;
+	public void setMaxLivingNeighboursForAlive(int newValue) {
+		maxLivingNeighboursForAlive = newValue;
+	}
+
+	public int getMinLivingNeighboursForDead() {
+		return minLivingNeighboursForDead;
+	}
+
+	public int getMinLivingNeighboursForAlive() {
+		return minLivingNeighboursForAlive;
+	}
+
+	public int getMaxLivingNeighboursForDead() {
+		return maxLivingNeighboursForDead;
+	}
+
+	public int getMaxLivingNeighboursForAlive() {
+		return maxLivingNeighboursForAlive;
 	}
 
 	/*
@@ -63,11 +79,11 @@ public class GameOfLife implements IGameOfLife {
 	private boolean suriveOrDie(boolean[][] population, int row, int column) {
 		int livingNeighbours = countLivingNeighbours(population, row, column);
 
-		if (!population[row][column] && minLivingNeighboursforDead <= livingNeighbours
-				&& livingNeighbours <= maxLivingNeighboursforDead) {
+		if (!population[row][column] && minLivingNeighboursForDead <= livingNeighbours
+				&& livingNeighbours <= maxLivingNeighboursForDead) {
 			return true;
-		} else if (population[row][column] && minLivingNeighboursforAlive <= livingNeighbours
-				&& livingNeighbours <= maxLivingNeighboursforAlive) {
+		} else if (population[row][column] && minLivingNeighboursForAlive <= livingNeighbours
+				&& livingNeighbours <= maxLivingNeighboursForAlive) {
 			return true;
 		} else {
 			return false;
