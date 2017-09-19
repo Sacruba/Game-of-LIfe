@@ -29,13 +29,14 @@ public class MainFrame extends JFrame {
 
 	private JLabel generations;
 	private JTextField generationsTF;
-	private JTextField[][] table;
+	private JButton[][] table;
 	private JButton calculateB, exitB;
 	private JPanel[] menu;
 
 	// Button handlers:
 	private CalculateButtonHandler cbHandler;
 	private ExitButtonHandler ebHandler;
+	private GameFieldButtonHandler gmfHandler;
 
 	@FXML
 	private AnchorPane ap;
@@ -51,7 +52,7 @@ public class MainFrame extends JFrame {
 		generationsTF.setHorizontalAlignment(JTextField.CENTER);
 
 		menu = new JPanel[10];
-		table = new JTextField[10][10];
+		table = new JButton[10][10];
 
 		for (int i = 0; i < table.length; i++) {
 			menu[i] = new JPanel();
@@ -77,16 +78,16 @@ public class MainFrame extends JFrame {
 		menu[3].add(calculateB);
 		menu[9].add(exitB);
 
+		gmfHandler = new GameFieldButtonHandler();
+
 		for (int i = 0; i < table.length; i++) {
 			pane.add(menu[i]);
 			for (int j = 0; j < table[i].length; j++) {
-				table[i][j] = new JTextField(5);
+				table[i][j] = new JButton("Dead");
+				table[i][j].addActionListener(gmfHandler);
 				pane.add(table[i][j]);
-				table[i][j].setText("Dead");
 				table[i][j].setBackground(new Color(255, 100, 100));
 				table[i][j].setHorizontalAlignment(JTextField.CENTER);
-				table[i][j].setEnabled(false);
-				table[i][j].setDisabledTextColor(new Color(0, 0, 0));
 			}
 		}
 
@@ -121,4 +122,19 @@ public class MainFrame extends JFrame {
 			System.exit(0);
 		}
 	}
+
+	private class GameFieldButtonHandler implements ActionListener {
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			JButton sourceButton = (JButton) (e.getSource());
+			if (sourceButton.getText().equals("Dead")) {
+				sourceButton.setText("Alive");
+				sourceButton.setBackground(new Color(100, 255, 100));
+			} else {
+				sourceButton.setText("Dead");
+				sourceButton.setBackground(new Color(255, 100, 100));
+			}
+		}
+	}
+
 }
