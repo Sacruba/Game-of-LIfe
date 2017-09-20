@@ -1,4 +1,4 @@
-package Main;
+package main;
 
 public class GameOfLife implements IGameOfLife {
 
@@ -18,7 +18,7 @@ public class GameOfLife implements IGameOfLife {
 			throw new IllegalArgumentException("Generations can't be negative");
 		}
 		for (int i = 0; i < pPopulation.length; i++) {
-			if (pPopulation[i].length != pPopulation[1].length) {
+			if (pPopulation[i].length != pPopulation[0].length) {
 				throw new IllegalArgumentException("The population must be rectangle shaped");
 			}
 		}
@@ -27,7 +27,7 @@ public class GameOfLife implements IGameOfLife {
 
 		// one iteration for each generation
 		for (int k = 0; k < generations; k++) {
-			boolean[][] newPopulation = new boolean[population.length][population[1].length];
+			boolean[][] newPopulation = new boolean[population.length][population[0].length];
 			for (int i = 0; i < population.length; i++) {
 				for (int j = 0; j < population[i].length; j++) {
 

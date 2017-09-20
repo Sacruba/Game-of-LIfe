@@ -1,8 +1,8 @@
-package Controller;
+package controller;
 
 import javax.swing.JTextField;
 
-import Main.GameOfLife;
+import main.GameOfLife;
 
 public class SettingsController {
 

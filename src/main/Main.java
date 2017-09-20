@@ -1,8 +1,8 @@
-package Main;
+package main;
 
-import Controller.GameFieldChangeController;
-import Controller.SettingsController;
-import GUI.MainFrame;
+import controller.GameFieldChangeController;
+import controller.SettingsController;
+import gui.MainFrame;
 
 public class Main {
 

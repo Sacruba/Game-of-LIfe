@@ -1,16 +1,16 @@
-package Controller;
+package controller;
 
 import java.awt.Color;
 
 import javax.swing.JButton;
 import javax.swing.JTextField;
 
-import Main.GameOfLife;
+import main.GameOfLife;
 
 public class GameFieldChangeController {
 
 	public void updateGameField(GameOfLife game, JButton[][] table, JTextField generationsTF) {
-		boolean[][] currentPopulation = new boolean[table.length][table[1].length];
+		boolean[][] currentPopulation = new boolean[table.length][table[0].length];
 		boolean[][] newPopulation;
 
 		for (int i = 0; i < table.length; i++) {

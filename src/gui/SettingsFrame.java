@@ -1,4 +1,4 @@
-package GUI;
+package gui;
 
 import java.awt.Container;
 import java.awt.GridLayout;
@@ -11,10 +11,11 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import Controller.SettingsController;
+import controller.SettingsController;
 
 public class SettingsFrame extends JFrame {
 
+	private static final long serialVersionUID = 1L;
 	private static final int WIDTH = 450;
 	private static final int HEIGHT = 350;
 
@@ -66,7 +67,6 @@ public class SettingsFrame extends JFrame {
 
 		setSize(WIDTH, HEIGHT);
 		setVisible(true);
-		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setResizable(false);
 
 	}
